@@ -1,0 +1,199 @@
+/*cambio de color en el desplazamiento del navbar*/
+.gris{
+  background:rgba(0, 0, 0, 0.267);
+}
+.top-nav-collapse{
+  background: rgba(8, 121, 129, 0.568) !important;
+}
+@media only screen and (max-width: 768px) {
+  .navbar {
+    background-color: #34456a;
+  }
+}
+/*fin cambio de color */
+
+html{
+  scroll-behavior: smooth;
+}
+
+*{
+  font-size: 18px;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+.buttonM{
+  background: #fff; /* color de fondo */
+  color: black; /* color de fuente */
+  border: 2px solid #37f3b4; /* tamaño y color de borde */
+  padding: 8px 20px;
+  border-radius: 25px; /* redondear bordes */
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  display: inline-block;
+  text-transform: uppercase;
+}
+
+.buttonM:hover{
+  color: rgb(74, 42, 255); /* color de fuente hover */
+}
+
+.buttonM::after{
+  content: "";
+  background: #37f3b4; /* color de fondo hover */
+  position: absolute;
+  z-index: -1;
+  padding: 16px 20px;
+  display: block;
+  top: 0;
+  bottom: 0;
+  left: -100%;
+  right: 100%;
+  -webkit-transition: all 0.35s;
+  transition: all 0.35s;
+}
+
+.buttonM:hover::after{
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  -webkit-transition: all 0.35s;
+  transition: all 0.35s;
+}
+
+.container{
+  position: relative;
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.container .card{
+  position: relative;
+  width: 300px;
+  height: 400px;
+  margin: 20px 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background: rgba(255,255,255,0.2);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(15px);
+}
+.container .card .imgBx{
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 20px;
+  transition: 0.5s ease-in-out;
+}
+.container .card:hover .imgBx{
+  transform: translateY(-100px);
+}
+.container .card .imgBx img{
+  max-width: 100%;
+  margin: 0 0 20px;
+  transition: 0.5s ease-in-out;
+}
+
+.container .card:hover .imgBx img{
+  transform: translate(-20px, -40px) rotate(-25deg) scale(1.4);
+}
+
+.container .card .imgBx h2{
+  color: #fff;
+  font-weight: 600;
+}
+
+.container .card .content{
+  position: absolute;
+  bottom: 20px;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  flex-direction: column;
+  transition: 0.5s ease-in-out;
+  opacity: 0;
+  visibility: hidden;
+}
+.container .card:hover .content{
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(-50px);
+}
+
+.container .card .content .horario,
+.container .card .content .fines{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 20px ;
+}
+
+.container .card .content .horario h3,
+.container .card .content .fines h3{
+  color: #fff;
+  font-weight: 300;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-right: 10px;
+}
+
+.container .card .content .horario span{
+  width: 26px;
+  height: 26px;
+  text-align: center;
+  line-height: 24px;
+  display: inline-block;
+  color: #111;
+  background: #fff;
+  border-radius: 4px;
+  font-size: 14px;
+  margin: 0 5px;
+  font-weight: 500;
+  transition: 0.5s;
+  cursor: pointer;
+}
+.container .card .content .horario span:hover{
+  background: #9bdc28;
+}
+.container .card .content .fines span{
+  width: 20px;
+  height: 20px;
+  background: #f00;
+  border-radius: 50%;
+  margin: 0 5px;
+  border: 2px solid #fff;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+.container .card .content .fines span:nth-child(2){
+  background: #9bdc28;
+}
+.container .card .content .fines span:nth-child(3){
+  background: #03a9f4;
+}
+.container .card .content .fines span:nth-child(4){
+  background: #e91e63;
+}
+
+.container .card .content a{
+  position: relative;
+  top: 10px;
+  display: inline-block;
+  padding: 12px 30px;
+  background: #fff;
+  border-radius: 40px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color:#111;
+  text-decoration: none;
+  text-transform: uppercase;
+}

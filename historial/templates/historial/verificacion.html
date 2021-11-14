@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block style %} <link rel="stylesheet" href="{% static 'css/style.css' %}"> {% endblock %}
+{% block title %} Eliminar Historia {% endblock %}
+
+{% block body %}
+<br><br><br><br>
+<div class="container">
+    <form method="POST">
+        {% csrf_token %}
+        <h1>
+            Desea eliminar la historia médica con los siguientes datos: <br> <br>
+            <ul>
+                <li>Código de la historia:  {{object.id_historia}} </li>
+                <li>
+                    Cédula y Nombre del paciente:
+                    <ul>
+                        <li>{{object.cli.cedula_cli}}</li>
+                        <li>{{object.cli.nombre_cli}} {{object.cli.apellido_cli}}</li>
+                    </ul>
+                    
+                </li>
+                <li>
+                    Registros: 
+                    <ul>
+                        <li>{{object.historia}}</li>
+                    </ul>
+                </li>
+            </ul>           
+        </h1>
+        <button type="submit" class="btn btn-danger"> Eliminar </button>
+        <a class="btn btn-success btn-md btn-rounded mx-0" href="{% url 'IndexHisto' %}" style="height: 52px; width: 130px;">Cancelar</a>
+    </form>
+</div>
+
+    
+{% endblock %}

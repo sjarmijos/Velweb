@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block style %} <link rel="stylesheet" href="{% static 'css/styleHm.css' %}"> {% endblock %}
+
+{% block title %} Inicio {% endblock %}
+{% block body %}
+
+<section>
+    <div class="container">
+        <div class="card">
+            <div class="imgBx">
+                <img src="{% static 'img/general.png' %}" alt="" width="30" height="60">
+                <h2>Medicina General</h2>
+            </div>
+            <div class="content">
+                <div class="horario">
+                    <h3> De Lunes a Viernes:</h3>
+                    <span>Costo de $10</span>
+                </div>
+                <div class="fines">
+                    <h3>Fines de Semana:</h3>
+                    <span>Costo de $12</span>
+                </div>
+                <a href="{% url 'IndexCita' %}">Agenda tu cita</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+{% endblock %}

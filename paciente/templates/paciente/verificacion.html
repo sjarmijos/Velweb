@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block style %} <link rel="stylesheet" href="{% static 'css/style.css' %}"> {% endblock %}
+{% block title %} Eliminar Médicos {% endblock %}
+
+
+{% block body %}
+<br><br><br><br>
+<div class="container">
+    <form method="POST">
+        {% csrf_token %}
+        <h1>
+            Desea eliminar al paciente con los siguientes datos: <br> <br>
+            Cédula:  {{object.cedula_cli}} <br> 
+            Nombre: 
+            {{object.nombre_cli}} <br> 
+            Apellido: 
+            {{object.apellido_cli}} <br>
+            Correo:  
+            {{object.correo_cli}}
+        </h1>
+        <button type="submit" class="btn btn-danger"> Eliminar </button>
+        <a class="btn btn-success btn-md btn-rounded mx-0" href="{% url 'IndexPac' %}" style="height: 52px; width: 130px;">Cancelar</a>
+    </form>
+</div>
+
+    
+{% endblock %}

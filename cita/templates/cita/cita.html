@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block style %} <link rel="stylesheet" href="{% static 'css/styleC.css' %}"> {% endblock %}
+
+{% block title %} Citas {% endblock %}
+
+{% block body %}
+<br><br><br><br>
+<div class="container">
+    <h1>Citas</h1>
+    <table class="table table-bordered">
+        <tr class="table-warning">
+            <th>Codigo de la cita</th>
+            <th>Paciente</th>
+            <th>Fecha de la cita</th>
+            <th>Hora de la cita</th>
+            <th>Médico Asignado</th>
+            <th>Especialidad del Médico</th>
+            {% if request.user.is_staff or request.user.is_superuser %}
+                <th colspan="2"><center>Config</center></th>
+            {% endif %}
+        </tr>
+        {% for cita in object_list %}
+            <tr class="table-primary">
+                <td>{{cita.id_cita}}</td>
+                <td>{{cita.cli.nombre_cli}} {{cita.cli.apellido_cli}}</td>
+                <td> {{cita.fecha_cita}} </td>
+                <td> {{cita.hora_cita}} </td>
+                <td> {{cita.doc.nombre_doc}}  {{cita.doc.apellido_doc}}</td>
+                <td> {{cita.doc.especialidad.nombre_espec}} </td>
+                {% if request.user.is_staff or request.user.is_superuser %}
+                    <td style="text-align: center;">
+                        <a class="buttonM2" href="{% url 'editarCita' cita.id_cita %}">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            Editar
+                        </a>
+                    </td>
+                    <td style="text-align: center;">
+                        <a class="buttonD" href="{% url 'eliminarCita' cita.id_cita %}">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            Eliminar
+                        </a>
+                    </td>
+                {% endif %}
+            </tr>
+        {% endfor %}
+    </table>
+    <br><br><br>
+    {% if request.user.is_staff or request.user.is_superuser %}
+        <a class="buttonC" href="{% url 'crearCita' %}"> 
+            <span>Nueva Cita</span> 
+        </a>
+    {% endif %}
+   
+    <a class="buttonV" href="{% url 'home' %}"> 
+        <span>Volver</span> 
+    </a>
+</div>
+
+{% endblock %}

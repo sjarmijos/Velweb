@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block style %} <link rel="stylesheet" href="{% static 'css/styleH.css' %}"> {% endblock %}
+
+{% block title %} Historial Médico {% endblock %}
+
+{% block body %}
+<br><br><br><br>
+<div class="container">
+    <h1>Historias Médicas</h1>
+    <table class="table table-bordered">
+        <tr class="table-warning">
+            <th>Codigo de la Historia</th>
+            <th>Paciente</th>
+            {% if request.user.is_staff or request.user.is_superuser %}
+                <th colspan="2"><center>Config</center></th>
+            {% endif %}
+            
+        </tr>
+        {% for historia in object_list %}
+            <tr class="table-primary">
+                <td>{{historia.id_historia}}</td>
+                <td>{{historia.cli.nombre_cli}} {{historia.cli.apellido_cli}}</td>
+                {% if request.user.is_staff or request.user.is_superuser %}
+                    <td style="text-align: center;"><a class="btn btn-success btn-md btn-rounded mx-0" href="{% url 'editarHisto' historia.id_historia %}">Revisar</a></td>
+                    <td style="text-align: center;"><a class="btn btn-success btn-md btn-rounded mx-0" href="{% url 'eliminarHisto' historia.id_historia %}">Eliminar</a></td>
+                {% endif %}
+                
+            </tr>
+        {% endfor %}
+    </table>
+    <br><br><br>
+    {% if request.user.is_staff or request.user.is_superuser %}
+        <center><a class="buttonCE" href="{% url 'crearHisto' %}"><span>Nueva Historia</span></a></center>
+    {% endif %}
+    <center><a class="buttonV" href="{% url 'home' %}"><span>Volver</span></a></center>
+</div>
+
+{% endblock %}

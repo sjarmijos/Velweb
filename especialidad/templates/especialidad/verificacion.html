@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block style %} <link rel="stylesheet" href="{% static 'css/style.css' %}"> {% endblock %}
+{% block title %} Eliminar Especialidad {% endblock %}
+
+
+{% block body %}
+<br><br><br><br>
+<div class="container">
+    <form method="POST">
+        {% csrf_token %}
+        <h1>
+            Desea eliminar la especialidad con los siguientes datos: <br> <br>
+            Código de la especialidad:  {{object.id_espec}} <br> 
+            Nombre de la especialidad: 
+            {{object.nombre_espec}} <br> 
+        </h1>
+        <button type="submit" class="btn btn-danger"> Eliminar </button>
+        <a class="btn btn-success btn-md btn-rounded mx-0" href="{% url 'IndexEspe' %}" style="height: 52px; width: 130px;">Cancelar</a>
+    </form>
+</div>
+
+    
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block style %} <link rel="stylesheet" href="{% static 'css/styleM.css' %}"> {% endblock %}
+{% block title %} Médicos {% endblock %}
+
+{% block body %}
+
+<br><br><br><br>
+<div class="container">
+    <h1>Médicos</h1>
+    <table class="table table-bordered">
+        <tr class="table-warning">
+            <th>Cedula</th>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Especialidad</th>
+            {% if request.user.is_staff or request.user.is_superuser %}
+                <th colspan="2"><center>Config</center></th>
+            {% endif %}
+            
+        </tr>
+        {% for medicos in object_list %}
+            <tr class="table-primary">
+                <td>{{medicos.cedula_doc}}</td>
+                <td>{{medicos.nombre_doc}}</td>
+                <td>{{medicos.apellido_doc}}</td>
+                <td>{{medicos.especialidad.nombre_espec}}</td>
+                {% if request.user.is_staff or request.user.is_superuser %}
+                    <td style="text-align: center;"><a class="btn btn-success btn-md btn-rounded mx-0" href="{% url 'editarMed' medicos.cedula_doc %}">Editar</a></td>
+                    <td style="text-align: center;"><a class="btn btn-success btn-md btn-rounded mx-0" href="{% url 'eliminarMed' medicos.cedula_doc %}">Eliminar</a></td>
+                {% endif %}
+                
+            </tr>
+        {% endfor %}
+    </table>
+    <br><br><br>
+    {% if request.user.is_staff or request.user.is_superuser %}
+        <center><a class="buttonCE" href="{% url 'crearMed' %}"><span>Nuevo medico</span></a></center>
+    {% endif %}
+    <center><a class="buttonV" href="{% url 'home' %}"><span>Volver</span></a></center>
+    
+</div>
+
+{% endblock %}

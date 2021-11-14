@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block style %} <link rel="stylesheet" href="{% static 'css/style.css' %}"> {% endblock %}
+
+{% block title %} Eliminar Medico {% endblock %}
+
+{% block body %}
+<br><br><br><br>
+<div class="container">
+    <form method="POST">
+        {% csrf_token %}
+        <h1>
+            Desea eliminar el/la Médico con los siguientes datos: <br> <br>
+            <ul>
+                <li>Código del Médico: {{object.cedula_doc}} </li>
+                <li>
+                    Nombre del médico:
+                    <ul>
+                        <li>{{object.nombre_doc}}</li>
+                        <li>{{object.apellido_doc}} </li>
+                    </ul>                    
+                </li>
+                <li>
+                    Especialidad del Médico: 
+                    <ul>
+                        <li>{{object.especialidad.nombre_espec}}</li>
+                    </ul>
+                </li>
+            </ul>           
+        </h1>
+        <button type="submit" class="btn btn-danger">Eliminar</button>
+        <a class="btn btn-success btn-md btn-rounded mx-0" href="{% url 'IndexMedico' %}" style="height: 52px; width: 130px;">Cancelar</a>
+    </form>
+</div>
+
+    
+{% endblock %}

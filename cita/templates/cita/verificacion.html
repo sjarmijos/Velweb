@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block style %} <link rel="stylesheet" href="{% static 'css/style.css' %}"> {% endblock %}
+{% block title %} Eliminar Especialidad {% endblock %}
+
+{% block body %}
+<br><br><br><br>
+<div class="container">
+    <form method="POST">
+        {% csrf_token %}
+        <h1>
+            Desea eliminar la Cita con los siguientes datos: <br> <br>
+            <ul>
+                <li>Código de la Cita: {{object.id_cita}} </li>
+                <li>
+                    Cédula y Nombre del paciente:
+                    <ul>
+                        <li>{{object.cli.cedula_cli}}</li>
+                        <li>{{object.cli.nombre_cli}} {{object.cli.apellido_cli}}</li>
+                    </ul>                    
+                </li>
+                <li>
+                    Nombre y Especialidad del Médico: 
+                    <ul>
+                        <li>{{object.doc.nombre_doc}} {{object.doc.apellido_doc}}</li>
+                        <li>{{object.doc.especialidad.nombre_espec}}</li>
+                    </ul>
+                </li>
+            </ul>           
+        </h1>
+        <button type="submit" class="btn btn-danger">Eliminar</button>
+        <a class="btn btn-success btn-md btn-rounded mx-0" href="{% url 'IndexCita' %}" style="height: 52px; width: 130px;">Cancelar</a>
+    </form>
+</div>
+
+    
+{% endblock %}
